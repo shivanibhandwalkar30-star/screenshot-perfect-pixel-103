@@ -39,9 +39,8 @@ import {
 import { useAllRequests, useRequestHistory, type PickupRequest } from "@/lib/requests";
 
 export const Route = createFileRoute("/admin/requests")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { q?: string } =>
+    typeof search["q"] === "string" ? { q: search["q"] } : {},
   head: () => ({
     meta: [
       { title: "Request Management — EcoCollect Admin" },

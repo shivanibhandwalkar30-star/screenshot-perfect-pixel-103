@@ -105,7 +105,7 @@ function RequestPickup() {
     city: "Pune",
     pincode: "",
     pickup_date: "",
-    time_slot: TIME_SLOTS[0],
+    time_slot: TIME_SLOTS[0]!,
     instructions: "",
   });
 

@@ -23,7 +23,7 @@ export function SiteHeader() {
         <Link
           key={link.label}
           to={link.to}
-          hash={link.hash}
+          {...(link.hash ? { hash: link.hash } : {})}
           onClick={() => setOpen(false)}
           className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
         >
