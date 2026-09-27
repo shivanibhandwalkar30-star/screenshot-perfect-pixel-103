@@ -17,6 +17,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RequestPickupRouteImport } from './routes/request-pickup'
 import { Route as TrackRouteImport } from './routes/track'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminRequestsRouteImport } from './routes/admin/requests'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRequestsRoute = AdminRequestsRouteImport.update({
+  id: '/admin/requests',
+  path: '/admin/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/request-pickup': typeof RequestPickupRoute
   '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/request-pickup': typeof RequestPickupRoute
   '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/request-pickup': typeof RequestPickupRoute
   '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/request-pickup'
     | '/track'
+    | '/admin/requests'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/request-pickup'
     | '/track'
+    | '/admin/requests'
     | '/admin'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/request-pickup'
     | '/track'
+    | '/admin/requests'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RequestPickupRoute: typeof RequestPickupRoute
   TrackRoute: typeof TrackRoute
+  AdminRequestsRoute: typeof AdminRequestsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/requests': {
+      id: '/admin/requests'
+      path: '/admin/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AdminRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RequestPickupRoute: RequestPickupRoute,
   TrackRoute: TrackRoute,
+  AdminRequestsRoute: AdminRequestsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
