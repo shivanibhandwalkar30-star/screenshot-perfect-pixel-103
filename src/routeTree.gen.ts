@@ -19,6 +19,7 @@ import { Route as TrackRouteImport } from './routes/track'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminRequestsRouteImport } from './routes/admin/requests'
 import { Route as AdminScheduledRouteImport } from './routes/admin/scheduled'
+import { Route as AdminStatisticsRouteImport } from './routes/admin/statistics'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 
 const IndexRoute = IndexRouteImport.update({
@@ -71,6 +72,11 @@ const AdminScheduledRoute = AdminScheduledRouteImport.update({
   path: '/admin/scheduled',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminStatisticsRoute = AdminStatisticsRouteImport.update({
+  id: '/admin/statistics',
+  path: '/admin/statistics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/admin/users',
   path: '/admin/users',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/track': typeof TrackRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/track': typeof TrackRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/track': typeof TrackRoute
   '/admin/requests': typeof AdminRequestsRoute
   '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/admin/requests'
     | '/admin/scheduled'
+    | '/admin/statistics'
     | '/admin/users'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/admin/requests'
     | '/admin/scheduled'
+    | '/admin/statistics'
     | '/admin/users'
     | '/admin'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/track'
     | '/admin/requests'
     | '/admin/scheduled'
+    | '/admin/statistics'
     | '/admin/users'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   TrackRoute: typeof TrackRoute
   AdminRequestsRoute: typeof AdminRequestsRoute
   AdminScheduledRoute: typeof AdminScheduledRoute
+  AdminStatisticsRoute: typeof AdminStatisticsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminScheduledRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/statistics': {
+      id: '/admin/statistics'
+      path: '/admin/statistics'
+      fullPath: '/admin/statistics'
+      preLoaderRoute: typeof AdminStatisticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/admin/users'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackRoute: TrackRoute,
   AdminRequestsRoute: AdminRequestsRoute,
   AdminScheduledRoute: AdminScheduledRoute,
+  AdminStatisticsRoute: AdminStatisticsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
