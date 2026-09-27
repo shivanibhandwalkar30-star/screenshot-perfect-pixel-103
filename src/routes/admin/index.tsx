@@ -25,12 +25,9 @@ export const Route = createFileRoute("/admin/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: () => (
-    <RequireAuth adminOnly>
-      <AdminOverview />
-    </RequireAuth>
-  ),
+  component: AdminOverview,
 });
+
 
 function AdminOverview() {
   const { data: requests = [] } = useAllRequests();
