@@ -26,9 +26,8 @@ import { useAuth } from "@/lib/auth";
 import { useRequestByCode } from "@/lib/requests";
 
 export const Route = createFileRoute("/track")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    id: typeof search.id === "string" ? search.id : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { id?: string } =>
+    typeof search["id"] === "string" ? { id: search["id"] } : {},
   head: () => ({
     meta: [
       { title: "Track Your Pickup — EcoCollect" },

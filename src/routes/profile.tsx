@@ -106,10 +106,15 @@ function ProfilePage() {
   }
 
   async function updatePref(key: keyof typeof prefs, value: boolean) {
-    setPrefs((prev) => ({ ...prev, [key]: value }));
+    const next = { ...prefs, [key]: value };
+    setPrefs(next);
     const { error } = await supabase
       .from("profiles")
-      .update({ [key]: value })
+      .update({
+        notify_reminders: next.notify_reminders,
+        notify_status: next.notify_status,
+        notify_completion: next.notify_completion,
+      })
       .eq("id", user!.id);
     if (error) toast.error("Could not update your preference.");
     else await refreshProfile();
