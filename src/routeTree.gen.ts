@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RequestPickupRouteImport } from './routes/request-pickup'
+import { Route as TrackRouteImport } from './routes/track'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminRequestsRouteImport } from './routes/admin/requests'
+import { Route as AdminScheduledRouteImport } from './routes/admin/scheduled'
+import { Route as AdminStatisticsRouteImport } from './routes/admin/statistics'
+import { Route as AdminUsersRouteImport } from './routes/admin/users'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RequestPickupRoute = RequestPickupRouteImport.update({
+  id: '/request-pickup',
+  path: '/request-pickup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRequestsRoute = AdminRequestsRouteImport.update({
+  id: '/admin/requests',
+  path: '/admin/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminScheduledRoute = AdminScheduledRouteImport.update({
+  id: '/admin/scheduled',
+  path: '/admin/scheduled',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStatisticsRoute = AdminStatisticsRouteImport.update({
+  id: '/admin/statistics',
+  path: '/admin/statistics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/profile': typeof ProfileRoute
+  '/request-pickup': typeof RequestPickupRoute
+  '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/profile': typeof ProfileRoute
+  '/request-pickup': typeof RequestPickupRoute
+  '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/profile': typeof ProfileRoute
+  '/request-pickup': typeof RequestPickupRoute
+  '/track': typeof TrackRoute
+  '/admin/requests': typeof AdminRequestsRoute
+  '/admin/scheduled': typeof AdminScheduledRoute
+  '/admin/statistics': typeof AdminStatisticsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/history'
+    | '/profile'
+    | '/request-pickup'
+    | '/track'
+    | '/admin/requests'
+    | '/admin/scheduled'
+    | '/admin/statistics'
+    | '/admin/users'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/history'
+    | '/profile'
+    | '/request-pickup'
+    | '/track'
+    | '/admin/requests'
+    | '/admin/scheduled'
+    | '/admin/statistics'
+    | '/admin/users'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/history'
+    | '/profile'
+    | '/request-pickup'
+    | '/track'
+    | '/admin/requests'
+    | '/admin/scheduled'
+    | '/admin/statistics'
+    | '/admin/users'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  DashboardRoute: typeof DashboardRoute
+  HistoryRoute: typeof HistoryRoute
+  ProfileRoute: typeof ProfileRoute
+  RequestPickupRoute: typeof RequestPickupRoute
+  TrackRoute: typeof TrackRoute
+  AdminRequestsRoute: typeof AdminRequestsRoute
+  AdminScheduledRoute: typeof AdminScheduledRoute
+  AdminStatisticsRoute: typeof AdminStatisticsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/request-pickup': {
+      id: '/request-pickup'
+      path: '/request-pickup'
+      fullPath: '/request-pickup'
+      preLoaderRoute: typeof RequestPickupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/requests': {
+      id: '/admin/requests'
+      path: '/admin/requests'
+      fullPath: '/admin/requests'
+      preLoaderRoute: typeof AdminRequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/scheduled': {
+      id: '/admin/scheduled'
+      path: '/admin/scheduled'
+      fullPath: '/admin/scheduled'
+      preLoaderRoute: typeof AdminScheduledRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/statistics': {
+      id: '/admin/statistics'
+      path: '/admin/statistics'
+      fullPath: '/admin/statistics'
+      preLoaderRoute: typeof AdminStatisticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  DashboardRoute: DashboardRoute,
+  HistoryRoute: HistoryRoute,
+  ProfileRoute: ProfileRoute,
+  RequestPickupRoute: RequestPickupRoute,
+  TrackRoute: TrackRoute,
+  AdminRequestsRoute: AdminRequestsRoute,
+  AdminScheduledRoute: AdminScheduledRoute,
+  AdminStatisticsRoute: AdminStatisticsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
