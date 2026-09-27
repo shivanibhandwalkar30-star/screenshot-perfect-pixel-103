@@ -14,16 +14,273 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          request_uuid: string | null
+          title: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          request_uuid?: string | null
+          title: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          request_uuid?: string | null
+          title?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_request_uuid_fkey"
+            columns: ["request_uuid"]
+            isOneToOne: false
+            referencedRelation: "pickup_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pickup_requests: {
+        Row: {
+          area: string
+          city: string
+          claim_email: string | null
+          collector: string | null
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          created_at: string
+          id: string
+          image_url: string | null
+          instructions: string
+          pickup_address: string
+          pickup_date: string
+          pincode: string
+          quantity: number
+          quantity_unit: string
+          request_id: string
+          status: Database["public"]["Enums"]["request_status"]
+          time_slot: string
+          updated_at: string
+          user_id: string | null
+          waste_categories: string[]
+          waste_description: string
+        }
+        Insert: {
+          area?: string
+          city?: string
+          claim_email?: string | null
+          collector?: string | null
+          contact_email?: string
+          contact_name: string
+          contact_phone: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          instructions?: string
+          pickup_address: string
+          pickup_date: string
+          pincode?: string
+          quantity?: number
+          quantity_unit?: string
+          request_id?: string
+          status?: Database["public"]["Enums"]["request_status"]
+          time_slot: string
+          updated_at?: string
+          user_id?: string | null
+          waste_categories?: string[]
+          waste_description?: string
+        }
+        Update: {
+          area?: string
+          city?: string
+          claim_email?: string | null
+          collector?: string | null
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          instructions?: string
+          pickup_address?: string
+          pickup_date?: string
+          pincode?: string
+          quantity?: number
+          quantity_unit?: string
+          request_id?: string
+          status?: Database["public"]["Enums"]["request_status"]
+          time_slot?: string
+          updated_at?: string
+          user_id?: string | null
+          waste_categories?: string[]
+          waste_description?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string
+          area: string
+          city: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notify_completion: boolean
+          notify_reminders: boolean
+          notify_status: boolean
+          phone: string
+          pincode: string
+        }
+        Insert: {
+          address?: string
+          area?: string
+          city?: string
+          created_at?: string
+          email?: string
+          id: string
+          name?: string
+          notify_completion?: boolean
+          notify_reminders?: boolean
+          notify_status?: boolean
+          phone?: string
+          pincode?: string
+        }
+        Update: {
+          address?: string
+          area?: string
+          city?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notify_completion?: boolean
+          notify_reminders?: boolean
+          notify_status?: boolean
+          phone?: string
+          pincode?: string
+        }
+        Relationships: []
+      }
+      request_status_history: {
+        Row: {
+          created_at: string
+          id: string
+          note: string
+          request_uuid: string
+          status: Database["public"]["Enums"]["request_status"]
+          updated_by: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note?: string
+          request_uuid: string
+          status: Database["public"]["Enums"]["request_status"]
+          updated_by?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string
+          request_uuid?: string
+          status?: Database["public"]["Enums"]["request_status"]
+          updated_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "request_status_history_request_uuid_fkey"
+            columns: ["request_uuid"]
+            isOneToOne: false
+            referencedRelation: "pickup_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      waste_categories: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "user" | "admin"
+      request_status:
+        | "pending"
+        | "reviewed"
+        | "scheduled"
+        | "assigned"
+        | "on_the_way"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +407,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["user", "admin"],
+      request_status: [
+        "pending",
+        "reviewed",
+        "scheduled",
+        "assigned",
+        "on_the_way",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const
